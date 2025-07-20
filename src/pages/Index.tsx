@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, TrendingUp, DollarSign, Target, Upload, FileText, CheckCircle, BarChart3, Globe, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,6 +10,7 @@ import { FeatureCard } from '@/components/FeatureCard';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [urls, setUrls] = useState<string[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -80,7 +82,12 @@ const Index = () => {
                 Get My Recommendations
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full sm:w-auto"
+                onClick={() => navigate('/sample-report')}
+              >
                 See Sample Report
               </Button>
             </div>
@@ -238,7 +245,12 @@ const Index = () => {
             <p className="text-xl text-primary-foreground/90 mb-8">
               Get personalized recommendations for every product. Start boosting your sales today.
             </p>
-            <Button variant="outline" size="lg" className="bg-background text-foreground hover:bg-background/90">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="bg-background text-foreground hover:bg-background/90"
+              onClick={() => navigate('/sample-report')}
+            >
               Get My Recommendations
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
