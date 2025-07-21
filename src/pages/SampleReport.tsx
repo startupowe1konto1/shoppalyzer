@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { LanguageSelector } from '@/components/LanguageSelector';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ProductRecommendation {
   id: string;
@@ -66,6 +68,7 @@ const generateMockData = (): ProductRecommendation[] => {
 const SampleReport = () => {
   const navigate = useNavigate();
   const mockData = generateMockData();
+  const { t } = useLanguage();
 
   const getPriceChangeIcon = (current: number, recommended: number) => {
     if (recommended > current) return <TrendingUp className="h-4 w-4 text-green-600" />;
@@ -78,15 +81,20 @@ const SampleReport = () => {
   };
 
   const getDescriptionScoreBadge = (score: number) => {
-    if (score >= 90) return <Badge variant="secondary" className="bg-green-100 text-green-800">Excellent</Badge>;
-    if (score >= 80) return <Badge variant="secondary" className="bg-blue-100 text-blue-800">Good</Badge>;
-    if (score >= 70) return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">Fair</Badge>;
-    return <Badge variant="destructive">Needs Work</Badge>;
+    if (score >= 90) return <Badge variant="secondary" className="bg-green-100 text-green-800">{t('score.excellent')}</Badge>;
+    if (score >= 80) return <Badge variant="secondary" className="bg-blue-100 text-blue-800">{t('score.good')}</Badge>;
+    if (score >= 70) return <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">{t('score.fair')}</Badge>;
+    return <Badge variant="destructive">{t('score.needsWork')}</Badge>;
   };
 
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
+        {/* Language Selector */}
+        <div className="absolute top-4 right-4 z-50">
+          <LanguageSelector />
+        </div>
+        
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Button 
@@ -95,17 +103,17 @@ const SampleReport = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Home
+            {t('nav.backToHome')}
           </Button>
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-foreground">Sample Recommendations Report</h1>
+            <h1 className="text-3xl font-bold text-foreground">{t('report.title')}</h1>
             <p className="text-muted-foreground mt-2">
-              AI-powered optimization recommendations for 100 Amazon marketplace products
+              {t('report.subtitle')}
             </p>
           </div>
           <Button className="flex items-center gap-2">
             <Download className="h-4 w-4" />
-            Export Report
+            {t('nav.exportReport')}
           </Button>
         </div>
 
@@ -118,7 +126,7 @@ const SampleReport = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold">100</p>
-                <p className="text-sm text-muted-foreground">Products Analyzed</p>
+                <p className="text-sm text-muted-foreground">{t('report.summary.products')}</p>
               </div>
             </div>
           </Card>
@@ -129,7 +137,7 @@ const SampleReport = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold">27%</p>
-                <p className="text-sm text-muted-foreground">Avg. Potential Uplift</p>
+                <p className="text-sm text-muted-foreground">{t('report.summary.uplift')}</p>
               </div>
             </div>
           </Card>
@@ -140,7 +148,7 @@ const SampleReport = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold">73</p>
-                <p className="text-sm text-muted-foreground">Price Optimizations</p>
+                <p className="text-sm text-muted-foreground">{t('report.summary.optimizations')}</p>
               </div>
             </div>
           </Card>
@@ -151,7 +159,7 @@ const SampleReport = () => {
               </div>
               <div>
                 <p className="text-2xl font-bold">89</p>
-                <p className="text-sm text-muted-foreground">Content Improvements</p>
+                <p className="text-sm text-muted-foreground">{t('report.summary.improvements')}</p>
               </div>
             </div>
           </Card>
@@ -160,9 +168,9 @@ const SampleReport = () => {
         {/* Data Table */}
         <Card className="p-6">
           <div className="mb-4">
-            <h2 className="text-xl font-semibold mb-2">Product Recommendations</h2>
+            <h2 className="text-xl font-semibold mb-2">{t('report.table.title')}</h2>
             <p className="text-sm text-muted-foreground">
-              Detailed recommendations for pricing, content, and categorization optimization
+              {t('report.table.subtitle')}
             </p>
           </div>
           
@@ -170,14 +178,14 @@ const SampleReport = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[100px]">Product ID</TableHead>
-                  <TableHead className="min-w-[300px]">Product Title</TableHead>
-                  <TableHead>Current Price</TableHead>
-                  <TableHead>Recommended Price</TableHead>
-                  <TableHead>Change</TableHead>
-                  <TableHead>Description Score</TableHead>
-                  <TableHead>Potential Uplift</TableHead>
-                  <TableHead className="min-w-[200px]">Key Recommendations</TableHead>
+                  <TableHead className="w-[100px]">{t('report.table.productId')}</TableHead>
+                  <TableHead className="min-w-[300px]">{t('report.table.productTitle')}</TableHead>
+                  <TableHead>{t('report.table.currentPrice')}</TableHead>
+                  <TableHead>{t('report.table.recommendedPrice')}</TableHead>
+                  <TableHead>{t('report.table.change')}</TableHead>
+                  <TableHead>{t('report.table.descriptionScore')}</TableHead>
+                  <TableHead>{t('report.table.potentialUplift')}</TableHead>
+                  <TableHead className="min-w-[200px]">{t('report.table.recommendations')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -223,8 +231,8 @@ const SampleReport = () => {
           
           <div className="mt-4 text-center">
             <p className="text-sm text-muted-foreground">
-              Showing 20 of 100 products. 
-              <Button variant="link" className="px-2">View all products →</Button>
+              {t('report.table.showing')} 
+              <Button variant="link" className="px-2">{t('report.table.viewAll')}</Button>
             </p>
           </div>
         </Card>
