@@ -47,10 +47,21 @@ export const Footer = () => {
         <div>
           <h4 className="font-semibold mb-4 text-sm">Newsletter</h4>
           <p className="text-sm text-primary-foreground/70 mb-3">Cotygodniowe wskazówki dla sprzedawców Allegro</p>
-          <div className="flex gap-2">
-            <Input placeholder="Twój e-mail" className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 h-9 text-sm" />
-            <Button variant="cta" size="sm">Zapisz się</Button>
-          </div>
+          <button
+            onClick={openWaitlist}
+            style={{
+              background: '#F0921C',
+              color: 'white',
+              fontWeight: 700,
+              padding: '10px 24px',
+              borderRadius: '8px',
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Zapisz się
+          </button>
         </div>
       </div>
     </div>
