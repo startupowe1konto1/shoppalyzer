@@ -11,7 +11,9 @@ const Feature = ({ included, text }: { included: boolean; text: string }) => (
   </li>
 );
 
-export const Pricing = () => (
+export const Pricing = () => {
+  const { openWaitlist } = useWaitlist();
+  return (
   <section id="cennik" className="py-20">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
