@@ -11,17 +11,18 @@ export const HeroVariant2 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Sprzedawcy zwiększają marżę średnio o 12–18%
+              📈 Sprzedawcy zwiększają marżę średnio o 12–18%
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Zostawiasz pieniądze{' '}
-              <span className="text-accent-brand">na stole — każdego dnia.</span>
+              Twoja marża topnieje.<br />
+              <span className="text-accent-brand">A Ty się o tym dowiadujesz za późno.</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Kiedy Twój konkurent wyprzeda zapas, możesz podnieść cenę
-              i zarobić więcej — ale musisz to wiedzieć w odpowiednim momencie.
-              Shoppalyzer śledzi rynek za Ciebie i mówi dokładnie:
-              tutaj teraz możesz zarobić więcej.
+              Kiedy sprzedaż spada — obniżasz cenę.
+              Ale co jeśli konkurent właśnie wyprzedał zapas
+              i możesz zarobić więcej? Shoppalyzer śledzi rynek
+              i mówi Ci dokładnie: tutaj możesz podnieść cenę
+              i nie stracić ani jednej sprzedaży.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">

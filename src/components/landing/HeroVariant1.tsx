@@ -11,17 +11,18 @@ export const HeroVariant1 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Sprzedawcy oszczędzają średnio 6 godzin tygodniowo
+              ⏱️ Sprzedawcy odzyskują średnio 6 godzin tygodniowo
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Ile godzin w tym tygodniu{' '}
+              Ile godzin w tym tygodniu<br />
               <span className="text-accent-brand">zmarnowałeś na Excela?</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Sprzedawcy na Allegro tracą 5–8 godzin tygodniowo na ręczne
-              sprawdzanie cen konkurencji. Shoppalyzer robi to za Ciebie
-              i dostarcza gotowy raport każdego ranka — co warto reprzyć,
-              co promować, czego się pozbyć.
+              Ręczne przeklikiwanie ofert, przepisywanie cen,
+              arkusze które są nieaktualne zanim je skończysz —
+              to „zło konieczne" każdego sprzedawcy na Allegro.
+              Shoppalyzer robi całą tę robotę za Ciebie
+              i dostarcza gotową analizę każdego ranka.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">
