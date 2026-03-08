@@ -25,9 +25,8 @@ export const HeroVariant1 = () => {
               Bez Excela. Bez godzin przeklikiwania.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg">
-                Sprawdź ile tracisz za darmo
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button variant="cta" size="lg" onClick={() => { document.getElementById('cennik')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                Sprawdź za darmo ile tracisz →
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/sample-report')}>
                 Zobacz przykładowy raport
