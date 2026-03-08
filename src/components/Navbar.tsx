@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 const navLinks = [
   { label: 'Korzyści', href: '#korzysci' },
@@ -12,6 +13,7 @@ const navLinks = [
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { openWaitlist } = useWaitlist();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -75,7 +77,7 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden md:block">
-          <Button variant="cta" size="sm" onClick={() => handleNavClick('#cennik')}>
+          <Button variant="cta" size="sm" onClick={openWaitlist}>
             Wypróbuj za darmo
           </Button>
         </div>
@@ -98,7 +100,7 @@ export const Navbar = () => {
               {link.label}
             </button>
           ))}
-          <Button variant="cta" size="sm" className="w-full" onClick={() => { setMobileOpen(false); handleNavClick('#cennik'); }}>
+          <Button variant="cta" size="sm" className="w-full" onClick={() => { setMobileOpen(false); openWaitlist(); }}>
             Wypróbuj za darmo
           </Button>
         </div>

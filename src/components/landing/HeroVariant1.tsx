@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroDashboardMockup } from './HeroDashboardMockup';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 export const HeroVariant1 = () => {
   const navigate = useNavigate();
+  const { openWaitlist } = useWaitlist();
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(207_65%_34%/0.05)] via-white to-[hsl(33_88%_52%/0.05)] border-b">
       <div className="container mx-auto px-4 py-16 lg:py-28">
@@ -25,7 +27,7 @@ export const HeroVariant1 = () => {
               Bez Excela. Bez godzin przeklikiwania.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg" onClick={() => { document.getElementById('cennik')?.scrollIntoView({ behavior: 'smooth' }); }}>
+              <Button variant="cta" size="lg" onClick={openWaitlist}>
                 Sprawdź za darmo ile tracisz →
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/sample-report')}>

@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 export const FinalCTA = () => {
   const navigate = useNavigate();
+  const { openWaitlist } = useWaitlist();
   return (
     <section className="py-20 bg-gradient-primary">
       <div className="container mx-auto px-4 text-center">
@@ -15,7 +17,7 @@ export const FinalCTA = () => {
             Dołącz do ponad 200 sprzedawców na Allegro, którzy podejmują mądrzejsze decyzje każdego dnia dzięki Shoppalyzerowi.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="cta" size="lg">
+            <Button variant="cta" size="lg" onClick={openWaitlist}>
               Sprawdź swoje oferty za darmo
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

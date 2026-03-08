@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, X } from 'lucide-react';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 const Feature = ({ included, text }: { included: boolean; text: string }) => (
   <li className="flex items-start gap-2 text-sm">
@@ -10,7 +11,9 @@ const Feature = ({ included, text }: { included: boolean; text: string }) => (
   </li>
 );
 
-export const Pricing = () => (
+export const Pricing = () => {
+  const { openWaitlist } = useWaitlist();
+  return (
   <section id="cennik" className="py-20">
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
@@ -32,7 +35,7 @@ export const Pricing = () => (
             <Feature included={false} text="Alerty Slack" />
             <Feature included={false} text="Eksport PDF" />
           </ul>
-          <Button variant="outline" className="w-full">Zacznij za darmo</Button>
+          <Button variant="outline" className="w-full" onClick={openWaitlist}>Zacznij za darmo</Button>
         </Card>
 
         {/* Pro */}
@@ -50,7 +53,7 @@ export const Pricing = () => (
             <Feature included text="Rekomendacje marżowe AI" />
             <Feature included text="Eksport CSV i PDF" />
           </ul>
-          <Button variant="cta" className="w-full">Wypróbuj 14 dni za darmo</Button>
+          <Button variant="cta" className="w-full" onClick={openWaitlist}>Wypróbuj 14 dni za darmo</Button>
         </Card>
 
         {/* Agencja */}
@@ -74,4 +77,5 @@ export const Pricing = () => (
       </p>
     </div>
   </section>
-);
+  );
+};

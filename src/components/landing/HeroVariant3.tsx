@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroDashboardMockup } from './HeroDashboardMockup';
+import { useWaitlist } from '@/context/WaitlistContext';
 
 export const HeroVariant3 = () => {
   const navigate = useNavigate();
+  const { openWaitlist } = useWaitlist();
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[hsl(207_65%_34%/0.05)] via-white to-[hsl(33_88%_52%/0.05)] border-b">
       <div className="container mx-auto px-4 py-16 lg:py-28">
@@ -26,7 +28,7 @@ export const HeroVariant3 = () => {
               właśnie teraz — tutaj możesz zarobić więcej.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg">
+              <Button variant="cta" size="lg" onClick={openWaitlist}>
                 Znajdź moje okazje marżowe — za darmo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
