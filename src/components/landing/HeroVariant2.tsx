@@ -11,20 +11,21 @@ export const HeroVariant2 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Sprzedawcy oszczędzają średnio 6 godzin tygodniowo
+              🟢 Sprzedawcy zwiększają marżę średnio o 12–18%
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Przestań rzeźbić w Excelu.{' '}
-              <span className="text-accent-brand">Zacznij zarabiać.</span>
+              Zostawiasz pieniądze{' '}
+              <span className="text-accent-brand">na stole — każdego dnia.</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Ręczne sprawdzanie cen konkurencji zajmuje Ci 5–8 godzin tygodniowo?
-              Shoppalyzer robi to za Ciebie i dostarcza gotowy raport każdego ranka —
-              czarno na białym: gdzie tracisz rynek, a gdzie możesz zarobić więcej.
+              Kiedy Twój konkurent wyprzeda zapas, możesz podnieść cenę
+              i zarobić więcej — ale musisz to wiedzieć w odpowiednim momencie.
+              Shoppalyzer śledzi rynek za Ciebie i mówi dokładnie:
+              tutaj teraz możesz zarobić więcej.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">
-                Wypróbuj demo
+                Znajdź moje okazje marżowe
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/sample-report')}>

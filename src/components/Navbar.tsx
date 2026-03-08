@@ -42,7 +42,7 @@ export const Navbar = () => {
         scrolled ? 'shadow-[0_2px_12px_-2px_hsl(207_58%_23%/0.15)]' : ''
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between h-16">
+      <div className="container mx-auto px-4 flex items-center justify-between min-h-[72px] py-3">
         <a
           href="/"
           className="flex items-center overflow-visible"
@@ -52,8 +52,8 @@ export const Navbar = () => {
           <img
             src="/shoppalyzer_2.png"
             alt="Shoppalyzer"
-            className="h-10 md:h-[52px] w-auto object-contain"
-            style={logoStyle}
+            className="h-10 md:h-14 w-auto min-w-[160px] object-contain"
+            style={{ filter: 'drop-shadow(0px 1px 3px rgba(30,95,142,0.2))' }}
           />
         </a>
 

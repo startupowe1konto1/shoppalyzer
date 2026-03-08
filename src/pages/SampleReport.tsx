@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 interface ProductRecommendation {
   id: string;
@@ -99,166 +99,172 @@ const SampleReport = () => {
   const handleExportPDF = async () => {
     setPdfLoading(true);
 
-    // Load logo as base64
-    let logoBase64: string | null = null;
+    await new Promise(resolve => setTimeout(resolve, 800));
+
     try {
-      const response = await fetch('/shoppalyzer_2.png');
-      const blob = await response.blob();
-      logoBase64 = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(blob);
-      });
-    } catch {
-      // proceed without logo
-    }
-
-    setTimeout(() => {
       const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      const pageWidth = doc.internal.pageSize.getWidth();
-      const pageHeight = doc.internal.pageSize.getHeight();
+      const pageW = doc.internal.pageSize.getWidth();
+      const pageH = doc.internal.pageSize.getHeight();
       const margin = 15;
-      const contentWidth = pageWidth - margin * 2;
-      const today = new Date();
-      const dateStr = `${String(today.getDate()).padStart(2, '0')}.${String(today.getMonth() + 1).padStart(2, '0')}.${today.getFullYear()}`;
 
-      const addHeaderFooter = (pageNum: number, totalPages: number) => {
-        // Header
-        if (logoBase64) {
-          doc.addImage(logoBase64, 'PNG', margin, 10, 35, 12);
-        }
-        doc.setFontSize(14);
-        doc.setTextColor(30, 95, 142);
+      // --- LOGO ---
+      try {
+        const response = await fetch('/shoppalyzer_2.png');
+        const blob = await response.blob();
+        const base64 = await new Promise<string>((res) => {
+          const reader = new FileReader();
+          reader.onloadend = () => res(reader.result as string);
+          reader.readAsDataURL(blob);
+        });
+        doc.addImage(base64, 'PNG', margin, 8, 38, 16);
+      } catch {
         doc.setFont('helvetica', 'bold');
-        doc.text('Raport Analityczny', pageWidth - margin, 15, { align: 'right' });
-        doc.setFontSize(9);
-        doc.setTextColor(102, 102, 102);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`Wygenerowano: ${dateStr}`, pageWidth - margin, 21, { align: 'right' });
+        doc.setFontSize(16);
+        doc.setTextColor('#1E5F8E');
+        doc.text('Shoppalyzer', margin, 18);
+      }
 
-        // Header line
-        doc.setDrawColor(30, 95, 142);
-        doc.setLineWidth(0.3);
-        doc.line(margin, 26, pageWidth - margin, 26);
-
-        // Footer
-        doc.setDrawColor(221, 221, 221);
-        doc.setLineWidth(0.2);
-        doc.line(margin, pageHeight - 12, pageWidth - margin, pageHeight - 12);
-        doc.setFontSize(7);
-        doc.setTextColor(153, 153, 153);
-        doc.setFont('helvetica', 'normal');
-        doc.text('© 2025 Shoppalyzer — shoppalyzer.pl', margin, pageHeight - 8);
-        doc.text('Dokument poufny — wygenerowany automatycznie', pageWidth / 2, pageHeight - 8, { align: 'center' });
-        doc.text(`Strona ${pageNum} z ${totalPages}`, pageWidth - margin, pageHeight - 8, { align: 'right' });
-      };
-
-      // --- Page 1: Summary + Table start ---
-      let y = 32;
-
-      // Summary title
-      doc.setFontSize(12);
-      doc.setTextColor(30, 95, 142);
+      // Report title (right-aligned)
       doc.setFont('helvetica', 'bold');
-      doc.text('Podsumowanie analizy', margin, y);
-      y += 8;
+      doc.setFontSize(13);
+      doc.setTextColor('#1E5F8E');
+      doc.text('Raport Analityczny', pageW - margin, 13, { align: 'right' });
 
-      // Summary boxes (2x2)
+      // Date
+      const today = new Date();
+      const dateStr = today.toLocaleDateString('pl-PL', {
+        day: '2-digit', month: '2-digit', year: 'numeric'
+      });
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor('#666666');
+      doc.text(`Wygenerowano: ${dateStr}`, pageW - margin, 19, { align: 'right' });
+
+      // Header separator
+      doc.setDrawColor('#1E5F8E');
+      doc.setLineWidth(0.8);
+      doc.line(margin, 26, pageW - margin, 26);
+
+      // --- SUMMARY ---
+      let y = 33;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor('#1E5F8E');
+      doc.text('Podsumowanie analizy', margin, y);
+      y += 6;
+
       const summaryItems = [
-        { label: 'Przeanalizowane produkty', value: '100' },
-        { label: 'Średni potencjalny wzrost', value: '27%' },
-        { label: 'Optymalizacje cenowe', value: '73' },
-        { label: 'Propozycje zmian', value: '89' },
+        ['Przeanalizowane produkty', '100'],
+        ['Średni potencjalny wzrost', '27%'],
+        ['Optymalizacje cenowe', '73'],
+        ['Propozycje zmian', '89'],
       ];
-      const boxW = (contentWidth - 6) / 2;
-      const boxH = 14;
+
+      const boxW = (pageW - margin * 2 - 6) / 2;
+      const boxH = 10;
       summaryItems.forEach((item, i) => {
         const col = i % 2;
         const row = Math.floor(i / 2);
         const bx = margin + col * (boxW + 6);
-        const by = y + row * (boxH + 4);
-        doc.setFillColor(235, 244, 251);
+        const by = y + row * (boxH + 3);
+        doc.setFillColor('#EBF4FB');
         doc.roundedRect(bx, by, boxW, boxH, 2, 2, 'F');
-        doc.setFontSize(8);
-        doc.setTextColor(102, 102, 102);
         doc.setFont('helvetica', 'normal');
-        doc.text(item.label, bx + 4, by + 5);
-        doc.setFontSize(11);
-        doc.setTextColor(30, 95, 142);
+        doc.setFontSize(8);
+        doc.setTextColor('#1E5F8E');
+        doc.text(item[0], bx + 4, by + 4.5);
         doc.setFont('helvetica', 'bold');
-        doc.text(item.value, bx + 4, by + 11);
+        doc.setFontSize(9);
+        doc.text(item[1], bx + boxW - 4, by + 6.5, { align: 'right' });
       });
-      y += (boxH + 4) * 2 + 6;
+      y += 2 * (boxH + 3) + 6;
 
-      // Table title
-      doc.setFontSize(11);
-      doc.setTextColor(30, 95, 142);
+      // --- TABLE ---
       doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.setTextColor('#1E5F8E');
       doc.text('Rekomendacje produktowe', margin, y);
-      y += 6;
+      y += 5;
 
-      // Table
-      const tableData = mockData.map((p) => {
-        const change = getPriceChangePercentage(p.currentPrice, p.recommendedPrice);
+      const tableData = mockData.map(product => {
+        const change = Math.round(
+          ((product.recommendedPrice - product.currentPrice) / product.currentPrice) * 100
+        );
         return [
-          p.id,
-          p.title,
-          `${p.currentPrice.toFixed(2)} zł`,
-          `${p.recommendedPrice.toFixed(2)} zł`,
+          product.id,
+          product.title.substring(0, 35),
+          `${product.currentPrice.toFixed(2)} zł`,
+          `${product.recommendedPrice.toFixed(2)} zł`,
           `${change > 0 ? '+' : ''}${change}%`,
-          `${p.descriptionScore} — ${getScoreLabel(p.descriptionScore)}`,
-          `+${p.potentialUplift}%`,
+          `${product.descriptionScore}/100`,
+          `+${product.potentialUplift}%`,
         ];
       });
 
-      (doc as any).autoTable({
+      autoTable(doc, {
         startY: y,
-        head: [['ID', 'Nazwa produktu', 'Cena aktualna', 'Cena rekomendowana', 'Zmiana %', 'Ocena opisu', 'Potencjał']],
+        head: [[
+          'ID', 'Nazwa produktu', 'Cena aktualna',
+          'Cena rekomend.', 'Zmiana', 'Opis', 'Potencjał'
+        ]],
         body: tableData,
         margin: { left: margin, right: margin, bottom: 18 },
         styles: {
-          fontSize: 8,
-          cellPadding: 2,
-          lineColor: [221, 221, 221],
-          lineWidth: 0.15,
+          fontSize: 7.5,
+          cellPadding: 2.5,
+          lineColor: '#DDDDDD',
+          lineWidth: 0.3,
         },
         headStyles: {
-          fillColor: [30, 95, 142],
-          textColor: [255, 255, 255],
+          fillColor: '#1E5F8E',
+          textColor: '#FFFFFF',
           fontStyle: 'bold',
-          fontSize: 9,
+          fontSize: 8,
         },
         alternateRowStyles: {
-          fillColor: [240, 247, 255],
+          fillColor: '#F0F7FF',
         },
         columnStyles: {
           0: { cellWidth: 18 },
-          4: { cellWidth: 18 },
-          5: { cellWidth: 28 },
+          1: { cellWidth: 55 },
+          2: { cellWidth: 22 },
+          3: { cellWidth: 22 },
+          4: { cellWidth: 16 },
+          5: { cellWidth: 16 },
           6: { cellWidth: 18 },
         },
         didParseCell: (data: any) => {
-          if (data.section === 'body' && data.column.index === 4) {
-            const val = data.cell.raw as string;
-            if (val.startsWith('+')) {
-              data.cell.styles.textColor = [22, 163, 74];
-            } else if (val.startsWith('-')) {
-              data.cell.styles.textColor = [220, 38, 38];
-            }
+          if (data.column.index === 4 && data.section === 'body') {
+            const val = String(data.cell.raw);
+            if (val.startsWith('+')) data.cell.styles.textColor = '#16A34A';
+            else if (val.startsWith('-')) data.cell.styles.textColor = '#DC2626';
           }
+        },
+        didDrawPage: () => {
+          const pCount = doc.getNumberOfPages();
+          const pCurrent = doc.getCurrentPageInfo().pageNumber;
+          doc.setDrawColor('#DDDDDD');
+          doc.setLineWidth(0.3);
+          doc.line(margin, pageH - 12, pageW - margin, pageH - 12);
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(7);
+          doc.setTextColor('#999999');
+          doc.text('© 2025 Shoppalyzer — shoppalyzer.pl', margin, pageH - 7);
+          doc.text('Dokument poufny — wygenerowany automatycznie',
+            pageW / 2, pageH - 7, { align: 'center' });
+          doc.text(`Strona ${pCurrent} z ${pCount}`,
+            pageW - margin, pageH - 7, { align: 'right' });
         },
       });
 
-      // Add headers and footers to all pages
-      const totalPages = doc.getNumberOfPages();
-      for (let i = 1; i <= totalPages; i++) {
-        doc.setPage(i);
-        addHeaderFooter(i, totalPages);
-      }
+      const fileName = `Shoppalyzer_Raport_${dateStr.replace(/\./g, '-')}.pdf`;
+      doc.save(fileName);
 
-      doc.save(`Shoppalyzer_Raport_${dateStr.replace(/\./g, '-')}.pdf`);
+    } catch (error) {
+      console.error('PDF generation error:', error);
+    } finally {
       setPdfLoading(false);
-    }, 800);
+    }
   };
 
   return (

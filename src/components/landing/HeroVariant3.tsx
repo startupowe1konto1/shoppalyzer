@@ -11,20 +11,21 @@ export const HeroVariant3 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Sprzedawcy zwiększają marżę średnio o 12–18%
+              🟢 Ponad 200 sprzedawców na Allegro odzyskało kontrolę
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Nie zawsze musisz być najtańszy,{' '}
-              <span className="text-accent-brand">żeby wygrywać na Allegro.</span>
+              Twoja konkurencja obniżyła cenę.{' '}
+              <span className="text-accent-brand">Kiedy się o tym dowiedziałeś?</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Shoppalyzer wskazuje dokładnie te produkty, na których możesz
-              bezpiecznie podnieść cenę — bo konkurencja wyprzedała zapas
-              lub w ogóle jej tam nie ma. Przestań zostawiać pieniądze na stole.
+              Ceny na Allegro zmieniają się co godzinę — a ręcznie zrobiony
+              raport jest nieaktualny zanim go skończysz. Shoppalyzer analizuje
+              Twoją kategorię automatycznie i alarmuje Cię zanim zaczniesz
+              tracić sprzedaż.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">
-                Pobierz darmowy raport marż
+                Sprawdź swoją kategorię za darmo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/sample-report')}>

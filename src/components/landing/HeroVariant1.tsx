@@ -11,20 +11,21 @@ export const HeroVariant1 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Ponad 200 sprzedawców na Allegro odzyskało kontrolę
+              🟢 Sprzedawcy oszczędzają średnio 6 godzin tygodniowo
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Ktoś znowu psuje Twoje ceny{' '}
-              <span className="text-accent-brand">na Allegro?</span>
+              Ile godzin w tym tygodniu{' '}
+              <span className="text-accent-brand">zmarnowałeś na Excela?</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Nieuczciwi sprzedawcy podpinają się pod Twoje kody EAN i zaniżają marżę
-              — a Ty dowiadujesz się za późno. Shoppalyzer wykrywa ich automatycznie
-              i wysyła Ci alert, zanim zdążą zniszczyć Twoją ofertę.
+              Sprzedawcy na Allegro tracą 5–8 godzin tygodniowo na ręczne
+              sprawdzanie cen konkurencji. Shoppalyzer robi to za Ciebie
+              i dostarcza gotowy raport każdego ranka — co warto reprzyć,
+              co promować, czego się pozbyć.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">
-                Sprawdź swoje oferty za darmo
+                Wypróbuj za darmo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" onClick={() => navigate('/sample-report')}>
