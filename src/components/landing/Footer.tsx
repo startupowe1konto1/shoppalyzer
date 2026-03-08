@@ -53,7 +53,7 @@ export const Footer = () => (
       </div>
     </div>
     <div className="border-t border-primary-foreground/10 py-4">
-      <p className="text-center text-xs text-primary-foreground/50">© 2025 Shoppalyzer. Wszelkie prawa zastrzeżone.</p>
+      <p className="text-center text-xs text-primary-foreground/50"><p className="text-center text-xs text-primary-foreground/50">© 2026 Shoppalyzer. Wszelkie prawa zastrzeżone.</p></p>
     </div>
   </footer>
 );
