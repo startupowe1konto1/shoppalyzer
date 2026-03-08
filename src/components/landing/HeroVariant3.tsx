@@ -28,7 +28,7 @@ export const HeroVariant3 = () => {
               właśnie teraz — tutaj możesz zarobić więcej.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg">
+              <Button variant="cta" size="lg" onClick={openWaitlist}>
                 Znajdź moje okazje marżowe — za darmo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

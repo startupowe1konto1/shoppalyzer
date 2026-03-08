@@ -100,7 +100,7 @@ export const Navbar = () => {
               {link.label}
             </button>
           ))}
-          <Button variant="cta" size="sm" className="w-full" onClick={() => { setMobileOpen(false); handleNavClick('#cennik'); }}>
+          <Button variant="cta" size="sm" className="w-full" onClick={() => { setMobileOpen(false); openWaitlist(); }}>
             Wypróbuj za darmo
           </Button>
         </div>

@@ -28,7 +28,7 @@ export const HeroVariant2 = () => {
               Ty tylko czytasz i działasz.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="cta" size="lg">
+              <Button variant="cta" size="lg" onClick={openWaitlist}>
                 Odzyskaj swój czas — zacznij za darmo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
