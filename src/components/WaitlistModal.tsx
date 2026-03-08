@@ -21,7 +21,7 @@ export const WaitlistModal = ({ isOpen, onClose }: WaitlistModalProps) => {
       onClick={onClose}
     >
       <div
-        className="relative max-w-lg w-full mx-4 bg-white rounded-2xl shadow-2xl p-8 animate-in slide-in-from-bottom-4 fade-in duration-300"
+        className="relative max-w-lg w-full mx-4 bg-white rounded-2xl shadow-2xl p-8 overflow-hidden animate-in slide-in-from-bottom-4 fade-in duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -46,7 +46,7 @@ export const WaitlistModal = ({ isOpen, onClose }: WaitlistModalProps) => {
         <iframe
           src="https://tally.so/embed/ZjVdl0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           width="100%"
-          height="220"
+          height="320"
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
