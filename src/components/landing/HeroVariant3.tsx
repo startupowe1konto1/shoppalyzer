@@ -11,17 +11,19 @@ export const HeroVariant3 = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🟢 Ponad 200 sprzedawców na Allegro odzyskało kontrolę
+              🛡️ Ponad 200 sprzedawców odzyskało kontrolę nad ofertami
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-foreground leading-tight">
-              Twoja konkurencja obniżyła cenę.{' '}
+              Konkurencja znów obniżyła ceny.<br />
               <span className="text-accent-brand">Kiedy się o tym dowiedziałeś?</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              Ceny na Allegro zmieniają się co godzinę — a ręcznie zrobiony
-              raport jest nieaktualny zanim go skończysz. Shoppalyzer analizuje
-              Twoją kategorię automatycznie i alarmuje Cię zanim zaczniesz
-              tracić sprzedaż.
+              Ceny na Allegro zmieniają się co godzinę.
+              Podpinacze psują Twoje oferty. Chińscy sprzedawcy
+              dumpingują bez ostrzeżenia. A Ty reagujesz za późno
+              — bo nie masz jak tego śledzić.
+              Shoppalyzer monitoruje Twoją kategorię
+              i alarmuje Cię zanim zaczniesz tracić sprzedaż.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="cta" size="lg">
