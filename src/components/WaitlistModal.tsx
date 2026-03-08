@@ -46,7 +46,7 @@ export const WaitlistModal = ({ isOpen, onClose }: WaitlistModalProps) => {
         <iframe
           src="https://tally.so/embed/ZjVdl0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
           width="100%"
-          height="220"
+          height="320"
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
