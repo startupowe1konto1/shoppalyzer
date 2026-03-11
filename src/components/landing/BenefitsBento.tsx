@@ -1,7 +1,6 @@
 import { Card } from '@/components/ui/card';
 
 const benefits = [
-  { icon: '📊', title: 'Codzienne rankingi konkurencji', desc: 'Sprawdź gdzie jesteś w swojej kategorii na tle TOP 5 konkurentów. Wiedz kto rośnie, kto spada — i co zrobić żeby wyprzedzić.' },
   { icon: '☕', title: 'Raport gotowy rano o 9:00', desc: 'Każdego dnia dostajesz gotową analizę: kto jest tańszy, gdzie tracisz pozycję i gdzie możesz zarobić więcej.' },
   { icon: '📈', title: 'Gdzie podnieść marżę', desc: 'Nasz algorytm wskazuje aukcje, gdzie konkurencja wyprzedała zapas — to Twoja szansa na wyższą cenę bez utraty sprzedaży.' },
   { icon: '🗑️', title: 'Co wyciąć z asortymentu', desc: 'Zidentyfikuj produkty, które rotują słabo i zjadają Twój budżet reklamowy. Zasada Pareto w praktyce.' },
